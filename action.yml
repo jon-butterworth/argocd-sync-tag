@@ -1,0 +1,36 @@
+name: "ArgoCD Sync"
+description: "Sync an ArgoCD Application from Github Actions"
+author: "Jon Butterworth"
+branding:
+  icon: activity
+  color: orange
+inputs:
+  address:
+    description: "ArgoCD Server Address"
+    required: true
+  token:
+    description: "ArgoCD Auth Token"
+    required: true
+  action:
+    description: "Action Name"
+    required: true
+  application:
+    description: "Name of the app to sync"
+    required: true
+  image-tag:
+    description: "Application Image Tag"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Run ArgoCD sync"
+      run: |
+        docker <DOCKER IMAGE>
+          ${{ inputs.action }} \
+          sync \
+          --application=${{ inputs.application }} \
+          --token=${{ inputs.token }} \
+          --address=${{ inputs.address }} \
+          --image-tag=${{ inputs.image-tag }}
+      shell: sh
