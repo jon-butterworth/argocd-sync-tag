@@ -26,7 +26,7 @@ runs:
   steps:
     - name: "Run ArgoCD sync"
       run: |
-        docker <DOCKER IMAGE>
+        docker ghcr.io/jon-butterworth/argocd-sync-tag:main
           ${{ inputs.action }} \
           sync \
           --application=${{ inputs.application }} \
