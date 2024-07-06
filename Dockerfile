@@ -10,6 +10,7 @@ FROM chef AS builder
 COPY --from=planner /app/recipe.json .
 RUN cargo chef cook --release
 COPY . .
+RUN cargo test --release
 RUN cargo build --release
 RUN mv ./target/release/argo-sync ./argo-sync
 

@@ -73,3 +73,146 @@ impl Application {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[tokio::test]
+    async fn test_add_new_image_tag() {
+        let mut app = Application {
+            metadata: json!({ "name": "test-app" }),
+            spec: Spec {
+                sources: vec![Source {
+                    repo_url: "https://test.com/repo".to_string(),
+                    path: Some("path/to/chart".to_string()),
+                    target_revision: Some("main".to_string()),
+                    helm: Some(Helm {
+                        value_files: Some(vec!["values.yaml".to_string()]),
+                        parameters: Some(vec![Parameter {
+                            name: "existing.param".to_string(),
+                            value: "value".to_string(),
+                        }]),
+                    }),
+                    reference: None,
+                }],
+                destination: json!({ "namespace": "default" }),
+                project: "default".to_string(),
+                sync_policy: json!({ "policy": "auto" }),
+            },
+            status: None,
+        };
+
+        app.add_image_tag("new-tag".to_string());
+
+        if let Some(helm) = &app.spec.sources[0].helm {
+            let parameters = helm.parameters.as_ref().unwrap();
+            assert!(parameters.iter().any(|p| p.name == "image.tag" && p.value == "new-tag"));
+        } else {
+            panic!("Helm configuration not found");
+        }
+    }
+
+    #[tokio::test]
+    async fn test_update_existing_image_tag() {
+        let mut app = Application {
+            metadata: json!({ "name": "test-app" }),
+            spec: Spec {
+                sources: vec![Source {
+                    repo_url: "https://example.com/repo".to_string(),
+                    path: Some("path/to/chart".to_string()),
+                    target_revision: Some("main".to_string()),
+                    helm: Some(Helm {
+                        value_files: Some(vec!["values.yaml".to_string()]),
+                        parameters: Some(vec![
+                            Parameter {
+                                name: "existing.param".to_string(),
+                                value: "value".to_string(),
+                            },
+                            Parameter {
+                                name: "image.tag".to_string(),
+                                value: "old-tag".to_string(),
+                            }
+                        ]),
+                    }),
+                    reference: None,
+                }],
+                destination: json!({ "namespace": "default" }),
+                project: "default".to_string(),
+                sync_policy: json!({ "policy": "auto" }),
+            },
+            status: None,
+        };
+
+        app.add_image_tag("new-tag".to_string());
+
+        if let Some(helm) = &app.spec.sources[0].helm {
+            let parameters = helm.parameters.as_ref().unwrap();
+            assert!(parameters.iter().any(|p| p.name == "image.tag" && p.value == "new-tag"));
+            assert!(parameters.iter().any(|p| p.name == "existing.param" && p.value == "value"));
+        } else {
+            panic!("Helm configuration not found");
+        }
+    }
+
+    #[tokio::test]
+    async fn test_add_image_tag_when_parameters_none() {
+        let mut app = Application {
+            metadata: json!({ "name": "test-app" }),
+            spec: Spec {
+                sources: vec![Source {
+                    repo_url: "https://example.com/repo".to_string(),
+                    path: Some("path/to/chart".to_string()),
+                    target_revision: Some("main".to_string()),
+                    helm: Some(Helm {
+                        value_files: Some(vec!["values.yaml".to_string()]),
+                        parameters: None,
+                    }),
+                    reference: None,
+                }],
+                destination: json!({ "namespace": "default" }),
+                project: "default".to_string(),
+                sync_policy: json!({ "policy": "auto" }),
+            },
+            status: None,
+        };
+
+        app.add_image_tag("new-tag".to_string());
+
+        if let Some(helm) = &app.spec.sources[0].helm {
+            let parameters = helm.parameters.as_ref().unwrap();
+            assert!(parameters.iter().any(|p| p.name == "image.tag" && p.value == "new-tag"));
+        } else {
+            panic!("Helm configuration not found");
+        }
+    }
+
+    #[tokio::test]
+    async fn test_other_fields_not_modified() {
+        let mut app = Application {
+            metadata: json!({ "name": "test-app" }),
+            spec: Spec {
+                sources: vec![Source {
+                    repo_url: "https://example.com/repo".to_string(),
+                    path: Some("path/to/chart".to_string()),
+                    target_revision: Some("main".to_string()),
+                    helm: Some(Helm {
+                        value_files: Some(vec!["values.yaml".to_string()]),
+                        parameters: None,
+                    }),
+                    reference: None,
+                }],
+                destination: json!({ "namespace": "default" }),
+                project: "default".to_string(),
+                sync_policy: json!({ "policy": "auto" }),
+            },
+            status: Some(json!({ "status": "healthy" })),
+        };
+
+        app.add_image_tag("new-tag".to_string());
+
+        assert_eq!(app.metadata["name"], "test-app");
+        assert_eq!(app.status.as_ref().unwrap()["status"], "healthy");
+    }
+}
