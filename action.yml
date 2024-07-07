@@ -1,4 +1,4 @@
-name: "ArgoCD Sync"
+name: "ArgoCD Update Tag Sync"
 description: "Sync an ArgoCD Application from Github Actions"
 author: "Jon Butterworth"
 branding:
