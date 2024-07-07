@@ -1,0 +1,12 @@
+/Users/jon/argocd-sync-tag/target/release/deps/libenv_filter-a264d7617b1b6c3f.rmeta: /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/lib.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/directive.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filter.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filtered_log.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/op.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/parser.rs
+
+/Users/jon/argocd-sync-tag/target/release/deps/libenv_filter-a264d7617b1b6c3f.rlib: /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/lib.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/directive.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filter.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filtered_log.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/op.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/parser.rs
+
+/Users/jon/argocd-sync-tag/target/release/deps/env_filter-a264d7617b1b6c3f.d: /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/lib.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/directive.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filter.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filtered_log.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/op.rs /Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/parser.rs
+
+/Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/lib.rs:
+/Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/directive.rs:
+/Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filter.rs:
+/Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/filtered_log.rs:
+/Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/op.rs:
+/Users/jon/.cargo/registry/src/index.crates.io-6f17d22bba15001f/env_filter-0.1.0/src/parser.rs:
