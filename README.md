@@ -1,6 +1,6 @@
-# ArgoCD Sync App
+# ArgoCD Tag & Sync Action
 
-This tool allows you to sync an ArgoCD application from GitHub Actions using the ArgoCD API. It supports updating the image tag and synchronising the application.
+Get control of you ArgoCD deployments from your GitHub Action workflow, but patching the application with the latest image tag and syncing all from your workflow.
 
 ## Features
 
@@ -51,4 +51,3 @@ deploy-dev:
         application: <ARGO APPLICATION NAME>
         image-tag: <DESIRED IMAGE TAG>
 ```
-
